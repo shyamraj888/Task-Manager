@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+   <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    
+   <div id="notes"></div>
+<a href="http://localhost:8080/posts/new" id="addn"></a>
+<div class="full">
+<% for(let i=0;i<posts.length;i++){ %>
+    
+<div class="post-it">
+
+<h4><%= posts[i].username %></h4>
+<h4><%= posts[i].caption %></h4>
+<div><a href="http://localhost:8080/posts/<%= posts[i].id %>">See more about this</a></div>
+<div><a href="http://localhost:8080/posts/<%= posts[i].id %>/edit">Edit Timing</a>
+</div>
+<a class="del" href="http://localhost:8080/posts/<%= posts[i].id %>/delete"></a>
+
+
+</div>
+
+<% } %>
+</div>
+
+
+
+
+</body>
+</html>

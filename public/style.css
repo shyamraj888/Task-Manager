@@ -1,0 +1,156 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
+
+* {
+	box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+}
+@keyframes gradientBG{
+  0%{
+    background-position:0% 50%;
+  }
+  50%{
+    background-position:100% 50%;
+  }
+  100%{
+    background-position:0% 50%;
+  }
+}
+#notes{
+  height: 100px;
+  width: 100px;
+  
+  position: absolute;
+ background-image: url('https://icon-library.com/images/task-management-icon/task-management-icon-29.jpg');
+  top: 20px;
+  right: 30px;
+  background-size: cover;
+
+}
+#addn{
+    height: 100px;
+    width: 100px;
+    background-image: url('https://www.freeiconspng.com/uploads/add-icon--icon-search-engine-1.png');
+    position: absolute;
+    background-size: cover;
+    top: 140px;
+    right: 35px;
+}
+@media (max-width: 768px){
+
+  h1{
+    font-size: 20px;
+    text-align: center;
+  }
+
+  #addn{
+    display:block;
+    text-align:center;
+    margin:10px auto;
+  }
+
+  .full{
+    width: 100vw;
+    padding:10px;
+  }
+
+  .post-it{
+    width: 90%;
+    margin: 10px auto;
+  }
+
+}
+
+.del{
+  width: 30px;
+  height: 30px;
+  border: 2px solid maroon;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  background-image: url('https://img.freepik.com/premium-vector/delete-icon-red-button-trash-can-symbol-illustration_692379-615.jpg');
+background-size: cover;
+
+}
+
+.post-it {
+ 	width:250px;
+  height:240px;
+  position:relative;
+  box-shadow: 2px 2px 0px black;
+ 
+flex: 0 0 20%;
+  justify-content: center;
+  justify-items: center;
+  background:rgb(255, 216, 97);
+  overflow:hidden;
+  margin:30px auto;
+  padding:20px;
+  border-radius:0 0 0 30px/45px;
+  box-shadow:
+    inset 0 -40px 40px rgba(0,0,0,0.2),
+    inset 0 25px 10px rgba(0,0,0,0.2),
+    0 5px 6px 5px rgba(0,0,0,0.2);
+  font-family: 'Permanent Marker', cursive;
+  line-height:1.7em;
+  font-size:19px;
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+
+  color:#130d6b;
+}
+.full{
+  height: 80vh;
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+.post-it li {
+ 	cursor:pointer; 
+}
+
+.post-it:before {
+ 	content:"";
+  display:grid;
+  position:absolute;
+  width:20px;
+  height:25px;
+  background:#ffa;
+  box-shadow:
+    3px -2px 10px rgba(0,0,0,0.2),
+    inset 15px -15px 15px rgba(0,0,0,0.3);
+  left:0;
+  bottom:0;
+  z-index:2;
+  transform:skewX(25deg);
+}
+
+.post-it:after {
+ 	content:"";
+  display:block;
+  position:absolute;
+  width:75%;
+  height:20px; 
+  border-top:3px solid #130d6b;
+  border-radius: 50% ;
+  bottom:0px;
+  left:10%;
+}
+
+.done {
+ 	text-decoration:line-through; 
+}
+
+h1 {
+ 	font-size:25px; 
+  position:relative;
+}
+
