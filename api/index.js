@@ -24,4 +24,9 @@ app.get('/', (req, res) => {
   res.redirect('/posts');
 });
 
+// 404 handler
+app.use((req, res) => {
+  res.status(404).send('Not Found');
+});
+
 module.exports = app;
