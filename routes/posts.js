@@ -1,11 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const { v4: uuidv4 } = require('uuid');
 
-// In-memory data store for demonstration purposes
-let posts = [
-  { id: uuidv4(), username: 'Complete Physics Assignment', caption: '08:00' },
-];
+// helper for uuid (dynamic import to satisfy ESM-only package on serverless)
+let uuidv4;
+async function getUuid() {
+  if (!uuidv4) {
+    const mod = await import('uuid');
+    uuidv4 = mod.v4;
+  }
+  return uuidv4;
+}
+
+// In-memory data store for demonstration purposes; generate id async on startup
+let posts = [];
+(async () => {
+  const v4 = await getUuid();
+  posts.push({ id: v4(), username: 'Complete Physics Assignment', caption: '08:00' });
+})();
 
 // index - show all posts
 router.get('/', (req, res, next) => {
@@ -28,10 +39,11 @@ router.get('/new', (req, res, next) => {
 });
 
 // create - add new post
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { username, caption } = req.body;
-    const id = uuidv4();
+    const v4 = await getUuid();
+    const id = v4();
     posts.push({ id, username, caption });
     res.redirect('/posts');
   } catch (err) {
