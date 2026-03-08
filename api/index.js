@@ -15,15 +15,29 @@ app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Resolve paths correctly for serverless
+const publicPath = path.resolve(__dirname, "../public");
+const viewsPath = path.resolve(__dirname, "../views");
+
+console.log('Public path:', publicPath);
+console.log('Views path:', viewsPath);
+
 // Serve static files
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(publicPath));
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../views"));
+app.set("views", viewsPath);
 
 // modular routes
-const postRoutes = require('../routes/posts');
-app.use('/posts', postRoutes);
+try {
+  const postRoutes = require('../routes/posts');
+  app.use('/posts', postRoutes);
+} catch (err) {
+  console.error('Failed to load routes:', err);
+  app.use('/posts', (req, res) => {
+    res.status(500).json({ error: 'Failed to load posts route', details: err.message });
+  });
+}
 
 // redirect root
 app.get('/', (req, res) => {
@@ -39,7 +53,7 @@ app.use((req, res) => {
 // Error handler
 app.use((err, req, res, next) => {
   console.error('Error:', err);
-  res.status(500).json({ error: 'Internal Server Error' });
+  res.status(500).json({ error: 'Internal Server Error', details: err.message });
 });
 
 module.exports = app;
