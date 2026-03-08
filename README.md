@@ -33,6 +33,8 @@ This project allows users to create, view, edit, and delete posts in a clean sti
 ```
 project-folder
 │
+├── api                  # serverless function entry point
+│   └── index.js
 ├── middleware           # custom middleware functions
 │   └── logger.js
 ├── routes               # express routers
@@ -46,8 +48,10 @@ project-folder
 │   ├── edit.ejs
 │   └── show.ejs
 │
-├── index.js
-└── package.json
+├── index.js             # local dev entry point
+├── vercel.json          # vercel serverless config
+├── package.json
+└── .gitignore
 ```
 
 ---
@@ -72,10 +76,16 @@ Install dependencies
 npm install
 ```
 
-Run the server
+Run the server locally
 
 ```
-node index.js
+npm run dev
+```
+
+Or production mode
+
+```
+npm start
 ```
 
 Open in browser
@@ -83,6 +93,44 @@ Open in browser
 ```
 http://localhost:8080/posts
 ```
+
+---
+
+## Vercel Deployment (Serverless)
+
+This project is configured for serverless deployment on Vercel.
+
+### Deploy Steps
+
+1. Push your code to GitHub
+
+```bash
+git add .
+git commit -m "Deploy to Vercel"
+git push origin main
+```
+
+2. Connect your repository to Vercel
+   - Go to [vercel.com](https://vercel.com)
+   - Click Import Project
+   - Select your GitHub repository
+   - Vercel will auto-detect the `vercel.json` configuration
+
+3. Click Deploy
+   - Your app will be live at a URL like `https://your-app.vercel.app`
+
+### Serverless Configuration
+
+The `vercel.json` file configures:
+- Serverless function runtime: `@vercel/node`
+- Entry point: `api/index.js`
+- All requests route to the Express app
+
+### Notes
+
+- The app uses in-memory storage (posts are not persisted across deployments)
+- For production, consider adding a database (MongoDB, PostgreSQL, etc.)
+- Environment variables can be configured in Vercel's project settings
 
 ---
 
