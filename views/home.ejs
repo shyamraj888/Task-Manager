@@ -9,7 +9,7 @@
 <body>
     
    <div id="notes"></div>
-<a href="http://localhost:8080/posts/new" id="addn"></a>
+<a href="/posts/new" id="addn"></a>
 <div class="full">
 <% for(let i=0;i<posts.length;i++){ %>
     
@@ -17,10 +17,10 @@
 
 <h4><%= posts[i].username %></h4>
 <h4><%= posts[i].caption %></h4>
-<div><a href="http://localhost:8080/posts/<%= posts[i].id %>">See more about this</a></div>
-<div><a href="http://localhost:8080/posts/<%= posts[i].id %>/edit">Edit Timing</a>
+<div><a href="/posts/<%= posts[i].id %>">See more about this</a></div>
+<div><a href="/posts/<%= posts[i].id %>/edit">Edit Timing</a>
 </div>
-<a class="del" href="http://localhost:8080/posts/<%= posts[i].id %>/delete"></a>
+<a class="del" href="/posts/<%= posts[i].id %>/delete"></a>
 
 
 </div>
