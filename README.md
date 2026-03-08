@@ -33,6 +33,10 @@ This project allows users to create, view, edit, and delete posts in a clean sti
 ```
 project-folder
 │
+├── middleware           # custom middleware functions
+│   └── logger.js
+├── routes               # express routers
+│   └── posts.js
 ├── public
 │   └── style.css
 │
