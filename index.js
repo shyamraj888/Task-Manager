@@ -17,7 +17,7 @@ let posts = [
   { id: uuidv4(), username: "Complete Physics Assignment", caption: "08:00" },
  
 ];
-
+// we have made a  comment here
 app.get("/posts", (req, res) => {
   res.render("home.ejs", { posts });
 });
